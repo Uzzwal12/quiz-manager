@@ -13,13 +13,13 @@ import { QuizService } from '../services/quiz';
 export class QuizController {
   constructor(private quizService: QuizService) {}
   @Get('/')
-  getAll() {
-    return this.quizService.getAllQuiz();
+  async getAll() {
+    return await this.quizService.getAllQuiz();
   }
 
   @Post('/')
   @UsePipes(ValidationPipe)
-  createQuiz(@Body() quizData: CreateQuizDto) {
-    return quizData;
+  async createQuiz(@Body() quizData: CreateQuizDto) {
+    return await this.quizService.createNewQuiz(quizData);
   }
 }
