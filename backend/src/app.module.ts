@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Quiz } from './quiz/entities/quiz.entiry';
 import { Questions } from './quiz/entities/quiestions.entity';
+import { Option } from './quiz/entities/options.entity';
 import { QuizModule } from './quiz/module';
 
 @Module({
@@ -22,7 +23,7 @@ import { QuizModule } from './quiz/module';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [Quiz, Questions],
+      entities: [Quiz, Questions, Option],
       synchronize: true,
     }),
   ],

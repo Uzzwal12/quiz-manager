@@ -13,7 +13,10 @@ import { QuizService } from '../services/quiz';
 
 @Controller('questions')
 export class QuestionController {
-  constructor(private questionService: QuestionService) {}
+  constructor(
+    private questionService: QuestionService,
+    private quizService: QuizService,
+  ) {}
   @Get('/')
   async getAll() {
     return await this.questionService.getAllQuiz();
@@ -22,6 +25,7 @@ export class QuestionController {
   @Post('/')
   @UsePipes(ValidationPipe)
   async createQuestion(@Body() questionData: CreateQuestionDto) {
-    return await this.questionService.createNewQuiz(questionData);
+    const quiz = await this.quizService.getQuizById(questionData.quizId);
+    return await this.questionService.createNewQuestion(questionData, quiz);
   }
 }

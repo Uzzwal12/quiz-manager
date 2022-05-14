@@ -2,6 +2,8 @@ import {
   Body,
   Controller,
   Get,
+  Param,
+  ParseIntPipe,
   Post,
   UsePipes,
   ValidationPipe,
@@ -15,6 +17,11 @@ export class QuizController {
   @Get('/')
   async getAll() {
     return await this.quizService.getAllQuiz();
+  }
+
+  @Get(':id')
+  async getQuizById(@Param('id', ParseIntPipe) id: number) {
+    return this.quizService.getQuizById(id);
   }
 
   @Post('/')
